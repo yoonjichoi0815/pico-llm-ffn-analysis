@@ -2,9 +2,12 @@
 import re
 from collections import defaultdict
 import matplotlib.pyplot as plt
+import os
 
-LOG_PATH = "/Users/yoonji/Projects/lectures/csci-ga2565-pico-llm-mys/analyze_ffn.txt"
-OUT_PATH = "ffn_layerwise_purity.png"
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+LOG_PATH = os.path.join(BASE_DIR, "data", "analyze_ffn.txt")
+OUT_PATH = os.path.join(BASE_DIR, "results", "figures", "ffn_layerwise_purity.png")
+os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
 
 layer_neuron_re = re.compile(r"=== Layer (\d+), Neuron (\d+), Top-(\d+) triggers ===")
 t0_header_re = re.compile(r"-- Top tokens at t\+0 --")
